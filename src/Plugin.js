@@ -17,15 +17,21 @@ export const loadPlugins = (pluginNames = []) => {
 
     try {
       if (pluginsDir) plugin = require(`${pluginsDir}/${pluginName}`).default
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
 
     try {
       if (!plugin) plugin = require(`minecord-plugin-${pluginName}`).default
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
 
     try {
       if (!plugin) plugin = require(`./plugins/${pluginName}`).default
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
 
     if (plugin) plugins.push(plugin(Plugin))
   })
